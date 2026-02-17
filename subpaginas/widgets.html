@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web con Widgets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        input, select {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Página Web con Widgets</h1>
+        <p>Widgets interactivos con APIs gratuitas</p>
+    </header>
+
+    <nav>
+        <a href="#reloj">Reloj</a>
+        <a href="#clima">Clima</a>
+        <a href="#monedas">Monedas</a>
+        <a href="#citas">Citas</a>
+        <a href="#galeria">Galería</a>
+        <a href="#chistes">Chistes</a>
+    </nav>
+
+    <main>
+        <!-- WIDGET 1: RELOJ DIGITAL -->
+        <section id="reloj">
+            <h2>⏰ Reloj Digital</h2>
+            <p>Hora actual en tiempo real</p>
+            <div id="reloj-display" style="font-size: 3rem; font-weight: bold; text-align: center; background-color: #f0f0f0; padding: 2rem; border-radius: 8px; margin: 1rem 0; font-family: 'Courier New', monospace;">
+                00:00:00
+            </div>
+        </section>
+
+        <!-- WIDGET 2: CLIMA -->
+        <section id="clima">
+            <h2>🌤️ Clima Actual</h2>
+            <p>Busca el clima de cualquier ciudad</p>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <input type="text" id="ciudad-input" placeholder="Ej: Madrid, París, Nueva York" style="width: 250px;">
+                <button onclick="obtenerClima()" style="width: auto; display: inline-block; margin-top: 0;">
+                    Buscar Clima
+                </button>
+            </div>
+            <div id="clima-resultado" style="text-align: center;">
+                <p style="color: #999;">Ingresa una ciudad para ver el clima</p>
+            </div>
+        </section>
+
+        <!-- WIDGET 3: CONVERTIDOR DE MONEDAS -->
+        <section id="monedas">
+            <h2>💱 Convertidor de Monedas</h2>
+            <p>Convierte entre diferentes monedas en tiempo real</p>
+            <div style="text-align: center; margin: 1.5rem 0;">
+                <input type="number" id="monto" placeholder="Cantidad" value="100" style="width: 100px;">
+                
+                <select id="moneda-origen" style="width: 150px;">
+                    <option value="USD">USD (Dólar)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="GBP">GBP (Libra)</option>
+                    <option value="MXN">MXN (Peso Mexicano)</option>
+                    <option value="ARS">ARS (Peso Argentino)</option>
+                    <option value="CLP">CLP (Peso Chileno)</option>
+                    <option value="JPY">JPY (Yen)</option>
+                    <option value="CNY">CNY (Yuan)</option>
+                </select>
+                
+                <button onclick="convertirMoneda()" style="width: auto; display: inline-block; margin-top: 0;">
+                    Convertir
+                </button>
+            </div>
+            <div id="resultado-moneda" style="text-align: center;">
+                <p style="color: #999;">Ingresa un monto para convertir</p>
+            </div>
+        </section>
+
+        <!-- WIDGET 4: CITAS INSPIRADORAS -->
+        <section id="citas">
+            <h2>💭 Cita del Día</h2>
+            <p>Obtén una cita inspiradora aleatoria</p>
+            <div id="cita-display" style="background-color: #f0f0f0; padding: 2rem; border-radius: 8px; margin: 1rem 0; min-height: 100px; display: flex; flex-direction: column; justify-content: center;">
+                <p id="cita-texto" style="font-size: 1.2rem; font-style: italic; text-align: center; margin-bottom: 1rem;">
+                    Cargando cita...
+                </p>
+                <p id="cita-autor" style="text-align: right; font-weight: bold; color: #666;">
+                    - Autor
+                </p>
+            </div>
+            <button onclick="obtenerCita()">Nueva Cita</button>
+        </section>
+
+        <!-- WIDGET 5: GALERÍA DE IMÁGENES -->
+        <section id="galeria">
+            <h2>🖼️ Galería de Imágenes</h2>
+            <p>Imágenes aleatorias de alta calidad</p>
+            <div id="imagenes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <!-- Las imágenes se cargarán aquí -->
+            </div>
+            <button onclick="cargarImagenes()">Cargar Nuevas Imágenes</button>
+        </section>
+
+        <!-- WIDGET 6: CHISTES -->
+        <section id="chistes">
+            <h2>😂 Chiste Aleatorio</h2>
+            <p>Obtén un chiste para reír</p>
+            <div id="chiste-display" style="background-color: #fff3cd; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; min-height: 80px; display: flex; align-items: center;">
+                <p id="chiste-texto" style="font-size: 1.1rem; text-align: center; width: 100%;">
+                    Cargando chiste...
+                </p>
+            </div>
+            <button onclick="obtenerChiste()">Nuevo Chiste</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // ========================================
+        // WIDGET 1: RELOJ DIGITAL
+        // ========================================
+        function actualizarReloj() {
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+            const elemento = document.getElementById('reloj-display');
+            if (elemento) {
+                elemento.textContent = `${horas}:${minutos}:${segundos}`;
+            }
+        }
+
+        // ========================================
+        // WIDGET 2: CLIMA
+        // ========================================
+        function obtenerClima() {
+            const ciudad = document.getElementById('ciudad-input').value;
+            if (!ciudad) {
+                alert('Por favor ingresa una ciudad');
+                return;
+            }
+            
+            const resultadoElemento = document.getElementById('clima-resultado');
+            resultadoElemento.innerHTML = '<p>Cargando...</p>';
+            
+            const urlGeocodificacion = `https://geocoding-api.open-meteo.com/v1/search?name=${ciudad}&count=1&language=es&format=json`;
+            
+            fetch(urlGeocodificacion)
+                .then(response => response.json())
+                .then(datos => {
+                    if (!datos.results || datos.results.length === 0) {
+                        resultadoElemento.innerHTML = '<p style="color: red;">❌ Ciudad no encontrada</p>';
+                        return;
+                    }
+                    
+                    const latitud = datos.results[0].latitude;
+                    const longitud = datos.results[0].longitude;
+                    const urlClima = `https://api.open-meteo.com/v1/forecast?latitude=${latitud}&longitude=${longitud}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m&timezone=auto`;
+                    
+                    return fetch(urlClima);
+                })
+                .then(response => response.json())
+                .then(datosClima => {
+                    const clima = datosClima.current;
+                    const temperatura = clima.temperature_2m;
+                    const codigoClima = clima.weather_code;
+                    const humedad = clima.relative_humidity_2m;
+                    const viento = clima.wind_speed_10m;
+                    
+                    let icono = '🌤️';
+                    if (codigoClima === 0) icono = '☀️';
+                    else if (codigoClima === 1 || codigoClima === 2) icono = '🌤️';
+                    else if (codigoClima === 3) icono = '☁️';
+                    else if (codigoClima === 45 || codigoClima === 48) icono = '🌫️';
+                    else if (codigoClima >= 50 && codigoClima <= 67) icono = '🌧️';
+                    else if (codigoClima >= 80 && codigoClima <= 82) icono = '⛈️';
+                    else if (codigoClima >= 85) icono = '❄️';
+                    
+                    resultadoElemento.innerHTML = `<div style="text-align: center; padding: 2rem;"><div style="font-size: 3rem;">${icono}</div><p style="font-size: 2rem; font-weight: bold;">${temperatura}°C</p><p>Humedad: ${humedad}%</p><p>Viento: ${viento.toFixed(1)} km/h</p></div>`;
+                })
+                .catch(error => {
+                    resultadoElemento.innerHTML = '<p style="color: red;">❌ Error al obtener el clima</p>';
+                });
+        }
+
+        // ========================================
+        // WIDGET 3: CONVERTIDOR DE MONEDAS
+        // ========================================
+        function convertirMoneda() {
+            const monto = document.getElementById('monto').value;
+            const monedaOrigen = document.getElementById('moneda-origen').value;
+            const resultadoElemento = document.getElementById('resultado-moneda');
+            
+            if (!monto || monto <= 0) {
+                alert('Por favor ingresa un monto válido');
+                return;
+            }
+            
+            resultadoElemento.innerHTML = '<p>Cargando tasas de cambio...</p>';
+            
+            fetch(`https://open.er-api.com/v6/latest/${monedaOrigen}`)
+                .then(response => response.json())
+                .then(datos => {
+                    const tasas = datos.rates;
+                    const monedas = ['USD', 'EUR', 'GBP', 'MXN', 'ARS', 'CLP', 'JPY', 'CNY'];
+                    
+                    let html = `<h3>💱 ${monto} ${monedaOrigen} equivale a:</h3>`;
+                    monedas.forEach(moneda => {
+                        if (tasas[moneda]) {
+                            const montoConvertido = (monto * tasas[moneda]).toFixed(2);
+                            html += `<p><strong>${moneda}:</strong> ${montoConvertido}</p>`;
+                        }
+                    });
+                    
+                    resultadoElemento.innerHTML = html;
+                })
+                .catch(error => {
+                    resultadoElemento.innerHTML = '<p style="color: red;">❌ Error al obtener tasas</p>';
+                });
+        }
+
+        // ========================================
+        // WIDGET 4: CITAS
+        // ========================================
+        function obtenerCita() {
+            const textoElemento = document.getElementById('cita-texto');
+            const autorElemento = document.getElementById('cita-autor');
+            
+            textoElemento.textContent = 'Cargando...';
+            
+            fetch('https://api.adviceslip.com/advice')
+                .then(response => response.json())
+                .then(datos => {
+                    if (datos.slip && datos.slip.advice) {
+                        textoElemento.textContent = `"${datos.slip.advice}"`;
+                        autorElemento.textContent = '— Consejo del día';
+                    } else {
+                        throw new Error('No se pudo obtener el consejo');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    textoElemento.textContent = '❌ Error al cargar la cita';
+                });
+        }
+
+        // ========================================
+        // WIDGET 5: GALERÍA
+        // ========================================
+        function cargarImagenes() {
+            const gridElemento = document.getElementById('imagenes-grid');
+            gridElemento.innerHTML = '<p>Cargando imágenes...</p>';
+            
+            // Usamos una API de perros que es muy confiable
+            Promise.all([
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json()),
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json()),
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json()),
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json()),
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json()),
+                fetch('https://dog.ceo/api/breeds/image/random').then(r => r.json())
+            ])
+            .then(respuestas => {
+                gridElemento.innerHTML = '';
+                
+                respuestas.forEach((dato, index) => {
+                    if (dato.status === 'success') {
+                        const contenedor = document.createElement('div');
+                        contenedor.style.position = 'relative';
+                        contenedor.style.overflow = 'hidden';
+                        contenedor.style.borderRadius = '8px';
+                        contenedor.style.cursor = 'pointer';
+                        
+                        const img = document.createElement('img');
+                        img.src = dato.message;
+                        img.alt = 'Imagen de perro';
+                        img.style.width = '100%';
+                        img.style.height = '200px';
+                        img.style.objectFit = 'cover';
+                        img.style.display = 'block';
+                        img.style.transition = 'transform 0.3s ease';
+                        
+                        img.addEventListener('mouseover', () => {
+                            img.style.transform = 'scale(1.1)';
+                        });
+                        
+                        img.addEventListener('mouseout', () => {
+                            img.style.transform = 'scale(1)';
+                        });
+                        
+                        contenedor.appendChild(img);
+                        gridElemento.appendChild(contenedor);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                gridElemento.innerHTML = '<p style="color: red;">❌ Error al cargar imágenes</p>';
+            });
+        }
+
+        // ========================================
+        // WIDGET 6: CHISTES
+        // ========================================
+        function obtenerChiste() {
+            const chisteElemento = document.getElementById('chiste-texto');
+            chisteElemento.textContent = 'Cargando...';
+            
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then(response => response.json())
+                .then(datos => {
+                    chisteElemento.textContent = datos.value;
+                })
+                .catch(error => {
+                    chisteElemento.textContent = '❌ Error al cargar el chiste';
+                });
+        }
+
+        // ========================================
+        // INICIAR TODO CUANDO LA PÁGINA CARGUE
+        // ========================================
+        window.addEventListener('load', function() {
+            actualizarReloj();
+            setInterval(actualizarReloj, 1000);
+            obtenerCita();
+            cargarImagenes();
+            obtenerChiste();
+        });
+    </script>
+    <a href="../index.html">
+        <button>Volver a la página principal</button>
+    </a>
+
+</body>
+</html>

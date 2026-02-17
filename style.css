@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    /* PASO 7.5: Fondo de imagen opcional (descomenta si tienes la imagen) */
+    /* background-image: url('images/fondo.jpg'); background-size: cover; background-attachment: fixed; */
+}
+
+header {
+    background-color: #700000; /* Color granate Fuster */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem; /* PASO 7.3: Título más grande */
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    background-color: #6d0000;
+    padding: 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #700000;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #700000;
+    padding-bottom: 0.5rem;
+}
+
+/* PASO 8.1: Estilo de Galería */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.galeria img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+/* PASO 8.2: Estilo de Listas */
+ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* PASO 6.2: Estilo del Formulario */
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+button {
+    background-color: #700000; /* PASO 7.4: Color personalizado */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #a00000;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* PASO 9: Diseño Responsivo (Móvil) */
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 0.8rem 0;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    main {
+        margin: 1rem auto;
+    }
+}
